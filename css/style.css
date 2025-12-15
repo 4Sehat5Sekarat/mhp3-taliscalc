@@ -1,0 +1,188 @@
+:root {
+  --dark-accent: red;
+  --dark-background: #1a1a1a;
+  --light-background: #f0f5f9;
+  --light-accent: #0045ff;
+  --dark-font-color: #ffffff;
+  --light-font-color: #1a1a1a;
+}
+
+#theme-button {
+  padding: 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 30%;
+}
+
+a {
+  text-decoration: none;
+  color: #00ffe6;
+}
+
+body {
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 50px;
+}
+
+li {
+  padding: 10px 0 0 0;
+}
+
+#calculator-container {
+  width: 70vw;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid;
+}
+
+#input-container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+#input-container input {
+  margin: 5px 0;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+#calculate {
+  margin-top: 5px;
+  padding: 5px 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#output {
+  margin: 3%;
+  padding: 10px;
+  border: 1px solid;
+  height: 50px;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  text-align: left;
+  font-family: Courier New;
+}
+
+#copy-button {
+  margin: 10px 0 10px 0;
+  padding: 5px 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.skillPicker {
+  width: 10em;
+  margin: 0.1rem;
+}
+
+select {
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+/*  Batas tema   */
+
+body.dark {
+  background-color: var(--dark-background);
+  color: var(--dark-accent);
+}
+
+body.dark h1 {
+  color: var(--dark-accent);
+}
+
+body.dark #calculator-container {
+  background-color: var(--dark-background);
+}
+
+body.dark #input-container input {
+  background-color: var(--dark-background);
+  color: var(--dark-accent);
+  border-color: var(--dark-accent);
+}
+
+body.dark #calculate {
+  background-color: var(--dark-background);
+  color: var(--dark-accent);
+  border-color: var(--dark-accent);
+}
+
+body.dark #output {
+  background-color: var(--dark-background);
+}
+
+body.dark #copy-button {
+  background-color: var(--dark-background);
+  color: var(--dark-accent);
+}
+
+body.dark select {
+  background-color: var(--dark-background);
+  color: var(--dark-accent);
+}
+
+body.dark option {
+  background-color: var(--dark-background);
+  color: var(--dark-accent);
+}
+
+/*  Batas tema   */
+
+body.light {
+  background-color: var(--light-background);
+  color: var(--light-accent);
+  border-color: var(--light-accent);
+}
+
+body.light h1 {
+  color: var(--light-accent);
+}
+
+body.light #calculator-container {
+  background-color: var(--light-background);
+}
+
+body.light #input-container input {
+  background-color: var(--light-background);
+  color: var(--light-accent);
+  border-color: var(--light-accent);
+}
+
+body.light #calculate {
+  background-color: var(--light-background);
+  color: var(--light-accent);
+  border-color: var(--light-accent);
+}
+
+body.light #output {
+  background-color: var(--light-background);
+}
+
+body.light #copy-button {
+  background-color: var(--light-background);
+  color: var(--light-accent);
+}
+
+body.light select {
+  background-color: var(--light-background);
+  color: var(--light-accent);
+}
+
+body.light option {
+  background-color: var(--light-background);
+  color: var(--light-accent);
+}
