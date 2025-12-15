@@ -24,4 +24,4 @@ function populateSkillOptionsFromFile(url) {
 }
 
 // contoh pemanggilan
-populateSkillOptionsFromFile("../asset/skill.json");
+populateSkillOptionsFromFile("skill.json");
