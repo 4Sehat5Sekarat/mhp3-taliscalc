@@ -1,9 +1,7 @@
-const calculateBtn = document.getElementById("calculate");
 const copyBtn = document.getElementById("copy-button");
 const output = document.getElementById("output");
 const themeButton = document.getElementById("theme-button");
 
-calculateBtn.addEventListener("click", calculateValues);
 copyBtn.addEventListener("click", copyResult);
 themeButton.addEventListener("click", changeTheme);
 
