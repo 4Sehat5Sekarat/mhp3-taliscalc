@@ -1,10 +1,10 @@
 :root {
-  --dark-accent: #540717;
-  --dark-background: #210309;
+  --dark-accent: #DC143C;
+  --dark-background: #040100;
   --light-background: #f0f5f9;
   --light-accent: #0045ff;
 
-  --dark-font-color: ##F7CAD3;
+  --dark-font-color: #F7CAD3;
   --light-font-color: #1a1a1a;
 }
 
