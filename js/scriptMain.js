@@ -27,17 +27,22 @@ function showToast(msg) {
 }
 
 function copyResult() {
-  const text = output.innerText;
+  const text = output.innerText || output.value;
 
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      console.log("[!] Copy oke");
-      showToast("copy oke!");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text);
+    showToast("copy oke!");
+  } else {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+
+    temp.select();
+    temp.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    showToast("Copy oke!");
+  }
 }
 
 function changeTheme() {
