@@ -79,7 +79,7 @@ _L 0x2174${hex16(address)} 0x${hex16(levelData)}6501<br />
 _L 0x2174${hex16(address + 4)} 0x0000${hex16(skillData)}`;
 }
 
-// TODO: Try this and implement it. and merge into calculateCodes because just different address
+// TODO: test and merge into calculateCodes because just different address
 function calculateCodesULJM({
   skill1Id = 0,
   skill2Id = 0,
@@ -118,27 +118,21 @@ function calculateValues() {
 
   const names = `_C0 ${talisman.selectedOptions[0].text} ${firstSkill.selectedOptions[0].text} with ${secondSkill.selectedOptions[0].text}<br>`;
 
+  const args = {
+    skill1Id: Number(firstSkill.value),
+    skill2Id: Number(secondSkill.value),
+    skill1Level: Number(firstLevel.value),
+    skill2Level: Number(secondLevel.value),
+    slot: Number(slot.value),
+    talismanId: Number(talisman.value),
+    box: Number(box.value),
+  };
+
   let codes;
   if (hash === "#uljm") {
-    codes = calculateCodesULJM({
-      skill1Id: Number(firstSkill.value),
-      skill2Id: Number(secondSkill.value),
-      skill1Level: Number(firstLevel.value),
-      skill2Level: Number(secondLevel.value),
-      slot: Number(slot.value),
-      talismanId: Number(talisman.value),
-      box: Number(box.value),
-    });
+    codes = calculateCodesULJM(args);
   } else {
-    codes = calculateCodes({
-      skill1Id: Number(firstSkill.value),
-      skill2Id: Number(secondSkill.value),
-      skill1Level: Number(firstLevel.value),
-      skill2Level: Number(secondLevel.value),
-      slot: Number(slot.value),
-      talismanId: Number(talisman.value),
-      box: Number(box.value),
-    });
+    codes = calculateCodes(args);
   }
 
   switch (codes) {
