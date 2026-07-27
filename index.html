@@ -1,115 +1,55 @@
 <!doctype html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>MHP3RDHD Custom Talisman</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="refresh" content="300" />
-  <meta name="keywords" content="Test" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta name="author" content="5W1H" />
-  <title>MHP3RDHD Custom Talisman</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-</head>
+  <body>
+    <div class="main">
+      <h3 class="title">MHP3RD Calculator</h3>
+      <div class="skillPicker">
+        <select id="firstSkillId">
+          <option value="0" disabled selected>Option Skill 1</option>
+        </select>
 
-<body>
-  <div class="main">
-    <h3 class="title">MHP3RD Calculator</h3>
-    <div id="input-container">
+        <select id="secondSkillId" class="skillPicker">
+          <option value="0" disabled selected>Option Skill 2</option>
+        </select>
+      </div>
 
-      <select id="firstSkillId" class="skillPicker">
-        <option value="0" disabled selected>Option Skill 1</option>
-      </select>
-      <select id="secondSkillId" class="skillPicker">
-        <option value="0" disabled selected>Option Skill 2</option>
-      </select>
+      <div class="skillPicker">
+        <input type="number" id="firstSkillLevel" placeholder="Level Skill 1" />
+        <input
+          type="number"
+          id="secondSkillLevel"
+          placeholder="Level Skill 2"
+        />
+      </div>
 
-      <br>
-      <input type="number" id="firstSkillLevel" placeholder="Level Skill 1" />
-      <input type="number" id="secondSkillLevel" placeholder="Level Skill 2" />
+      <div class="skillPicker">
+        <select id="talismanRarity"></select>
 
-      <br>
-      <select id="talismanRarity">
-        <option value="1" id="talismanRarity1">
-          Pawn Talisman [RARE 1]
-        </option>
-        <option value="2" id="talismanRarity2">
-          Bishop Talisman [RARE 2]
-        </option>
-        <option value="3" id="talismanRarity3">
-          Knight Talisman [RARE 3]
-        </option>
-        <option value="4" id="talismanRarity4">
-          Rook Talisman [RARE 4]
-        </option>
-        <option value="5" id="talismanRarity5">
-          Queen Talisman [RARE 5]
-        </option>
-        <option value="6" id="talismanRarity6">
-          King Talisman [RARE 6]
-        </option>
-        <option value="7" id="talismanRarity7">
-          Dragon Talisman [RARE 7]
-        </option>
-      </select>
+        <select id="numberOfSlot">
+          <option value="0">No slot</option>
+          <option value="1">1 Slot</option>
+          <option value="2">2 Slot</option>
+          <option value="3">3 Slot</option>
+        </select>
+        <select id="boxSlot"></select>
+      </div>
 
-      <select id="numberOfSlot">
-        <option value="0">
-          Number of slots ---
-        </option>
-        <option value="1">
-          Number of slots &#9675;--
-        </option>
-        <option value="2">
-          Number of slots &#9675;&#9675;-
-        </option>
-        <option value="3">
-          Number of slots &#9675;&#9675;&#9675;
-        </option>
-      </select>
+      <div id="output" class="output"></div>
 
-      <select id="boxSlot"></select>
-
+      <button id="buttonCopy" class="buttonCopy">Copy</button>
     </div>
-    <div id="output"></div>
-    <button id="copy-button">Copy</button>
-  </div>
 
+    <button id="buttonTheme" class="buttonTheme">Tema</button>
 
-  <button id="theme-button">Tema</button>
-
-  <details>
-    <summary>Some Message</summary>
-    This meant to be simple and lightweight
-    <br />
-    This just simple HTML + JavaScript calculator
-    <br />
-    BTW
-    <a href="https://www.mediafire.com/file/bl6kg5ulan81oyx/cheat.db/file">Free Cheat.db that i found</a>
-  </details>
-
-  <script src="js/skillOptions.js"></script>
-  <script src="js/scriptMain.js"></script>
-  <script>
-    const boxSlot = document.getElementById('boxSlot');
-
-    for (let i = 1; i <= 40; i++) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.text = `Box Slot ${i}`;
-      boxSlot.appendChild(option);
-    }
-
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.add("light");
-    }
-
-    document.querySelectorAll("input, select, textarea").forEach((el) => {
-      el.addEventListener("input", calculateValues);
-    });
-
-  </script>
-</body>
-
+    <script src="js/populate.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

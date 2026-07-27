@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Pawn Talisman"
+  },
+  {
+    "id": 2,
+    "name": "Bishop Talisman"
+  },
+  {
+    "id": 3,
+    "name": "Knight Talisman"
+  },
+  {
+    "id": 4,
+    "name": "Rook Talisman"
+  },
+  {
+    "id": 5,
+    "name": "Queen Talisman"
+  },
+  {
+    "id": 6,
+    "name": "King Talisman"
+  },
+  {
+    "id": 7,
+    "name": "Dragon Talisman"
+  }
+]

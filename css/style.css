@@ -1,125 +1,160 @@
 :root {
-  --dark-accent: #540717;
-  --dark-background: #040100;
-  --light-background: #f0f5f9;
-  --light-accent: #0045ff;
+  --font-size: 1rem;
+  --title-size: 2rem;
 
-  --dark-font-color: #F7CAD3;
-  --light-font-color: #1a1a1a;
+  --dark-accent: #ff9e01;
+  --dark-background: #171717;
+  --dark-font: #fafafa;
+  --dark-link: #00ffe6;
+
+  --light-accent: #0045ff;
+  --light-background: #f0f5f9;
+  --light-font: #1a1a1a;
+  --light-link: #0066cc;
+
+  /* active theme */
+  --bg: var(--light-background);
+  --fg: var(--light-font);
+  --accent: var(--light-accent);
+  --link: var(--light-link);
 }
 
-a {
-  text-decoration: none;
-  color: #00ffe6;
+body.dark {
+  color-scheme: dark;
+  --bg: var(--dark-background);
+  --fg: var(--dark-font);
+  --accent: var(--dark-accent);
+  --link: var(--dark-link);
+}
+
+body.light {
+  color-scheme: light;
+  --bg: var(--light-background);
+  --fg: var(--light-font);
+  --accent: var(--light-accent);
+  --link: var(--light-link);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
+  font-size: var(--font-size);
   text-align: center;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
 }
 
 li {
-  padding: 10px 0 0 0;
+  padding-top: 10px;
 }
 
 .main {
   position: relative;
-  border: 1px solid;
-  padding: 2em 1em 1em 1em;
-  margin: 6em auto 1em auto;
-
-  max-width: 520px;
-  width: 98%;
-  box-sizing: border-box;
+  width: min(98%, 520px);
+  margin: 6em auto 1em;
+  padding: 2em 1em 1em;
+  border: 1px solid var(--accent);
+  background: var(--bg);
+  color: var(--fg);
 }
 
 .title {
   position: absolute;
   top: -1.5em;
-  padding: 0 5px 0 5px;
+  padding: 0 5px;
+  font-size: var(--title-size);
+  background: var(--bg);
+  color: var(--accent);
 }
 
-#calculator-container {
-  width: 70vw;
-  margin: 0 auto;
-  padding: 0;
-  border: 1px solid;
+.skillPicker {
+  & input,
+  & select {
+    width: 10em;
+    margin: 0.25em;
+    padding: 0.5em;
+    font-size: inherit;
+    border: 1px solid var(--accent);
+    background: var(--bg);
+    color: var(--fg);
+    &:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+  }
 }
 
-#input-container {
-  margin: 0 auto;
-  width: 90%;
+option {
+  background: var(--bg);
+  color: var(--fg);
 }
 
-.skillPicker,
-#input-container input,
-#input-container select {
-  width: 10em;
-  border: 1px solid;
-  padding: 0.5em;
+.output {
   margin: 0.25em;
-}
-
-#output {
-  margin: 0.25em;
-  padding: 0.1em;
-  border: 1px solid;
-  height: 5em;
+  padding: 0.25em;
+  height: 7em;
   max-width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow: auto;
   text-align: left;
-  font-family: Courier New;
+  font-family: monospace;
+  border: 1px solid var(--accent);
+  background: var(--bg);
+  color: var(--fg);
 }
 
-#copy-button {
+.buttonCopy {
   margin: 1em;
   padding: 0.5em 25%;
-  border: 1px solid;
+  border: 1px solid var(--accent);
+  background: var(--bg);
+  color: var(--fg);
   cursor: pointer;
+  &:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
 }
 
-
-#theme-button {
+.buttonTheme {
   position: fixed;
   left: 10px;
   bottom: 10px;
   padding: 1em;
-  background-color: #007bff;
-  color: white;
   border: none;
+  background: var(--accent);
+  color: var(--bg);
   cursor: pointer;
-  opacity: 30%;
 }
 
-body.dark,
-body.dark .main,
-body.dark .title,
-body.dark #calculator-container,
-body.dark #input-container,
-body.dark #output,
-body.dark #copy-button,
-body.dark #input-container input,
-body.dark #input-container select,
-body.dark option {
-  background-color: var(--dark-background);
-  border-color: var(--dark-accent);
-  color: var(--dark-font-color);
+button,
+input,
+select,
+.main,
+.title,
+.output,
+body {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
 }
 
-/*  Batas tema   */
+button:hover {
+  opacity: 0.85;
+}
 
-body.light,
-body.light .main,
-body.light .title,
-body.light #calculator-container,
-body.light #input-container,
-body.light #output,
-body.light #copy-button,
-body.light #input-container input,
-body.light #input-container select,
-body.light option {
-  background-color: var(--light-background);
-  border-color: var(--light-accent);
-  color: var(--light-font-color);
+button:active {
+  transform: scale(0.98);
 }
