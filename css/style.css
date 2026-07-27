@@ -88,10 +88,10 @@ li {
     border: 1px solid var(--accent);
     background: var(--bg);
     color: var(--fg);
-    &:hover {
-      background: var(--accent);
-      color: var(--bg);
-    }
+    /* &:hover { */
+    /*   background: var(--accent); */
+    /*   color: var(--bg); */
+    /* } */
   }
 }
 
@@ -149,12 +149,4 @@ body {
     color 0.2s ease,
     border-color 0.2s ease,
     opacity 0.2s ease;
-}
-
-button:hover {
-  opacity: 0.85;
-}
-
-button:active {
-  transform: scale(0.98);
 }

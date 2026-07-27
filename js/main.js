@@ -79,7 +79,33 @@ _L 0x2174${hex16(address)} 0x${hex16(levelData)}6501<br />
 _L 0x2174${hex16(address + 4)} 0x0000${hex16(skillData)}`;
 }
 
+// TODO: Try this and implement it. and merge into calculateCodes because just different address
+function calculateCodesULJM({
+  skill1Id = 0,
+  skill2Id = 0,
+  skill1Level = 0,
+  skill2Level = 0,
+  slot = 0,
+  talismanId = 1,
+  box = 1,
+} = {}) {
+  if (!skill1Level && !skill2Level) return "no level";
+
+  const skillData = skill1Id + skill2Id * 128 + slot * 16384;
+  const levelData =
+    (skill1Level + 30) * 16 + (skill2Level + 30) * 1024 + talismanId - 1;
+
+  if (levelData > 0xffff) return "too long";
+
+  const address = 65032 + box * 12;
+
+  return `
+_L 0x2134${hex16(address)} 0x${hex16(levelData)}6501<br />
+_L 0x2134${hex16(address + 4)} 0x0000${hex16(skillData)}`;
+}
+
 function calculateValues() {
+  const hash = window.location.hash;
   const byId = (id) => document.getElementById(id);
 
   const talisman = byId("talismanRarity");
@@ -91,17 +117,44 @@ function calculateValues() {
   const box = byId("boxSlot");
 
   const names = `_C0 ${talisman.selectedOptions[0].text} ${firstSkill.selectedOptions[0].text} with ${secondSkill.selectedOptions[0].text}<br>`;
-  const codes = calculateCodes({
-    skill1Id: Number(firstSkill.value),
-    skill2Id: Number(secondSkill.value),
-    skill1Level: Number(firstLevel.value),
-    skill2Level: Number(secondLevel.value),
-    slot: Number(slot.value),
-    talismanId: Number(talisman.value),
-    box: Number(box.value),
-  });
 
-  output.innerHTML = names + codes;
+  let codes;
+  if (hash === "#uljm") {
+    codes = calculateCodesULJM({
+      skill1Id: Number(firstSkill.value),
+      skill2Id: Number(secondSkill.value),
+      skill1Level: Number(firstLevel.value),
+      skill2Level: Number(secondLevel.value),
+      slot: Number(slot.value),
+      talismanId: Number(talisman.value),
+      box: Number(box.value),
+    });
+  } else {
+    codes = calculateCodes({
+      skill1Id: Number(firstSkill.value),
+      skill2Id: Number(secondSkill.value),
+      skill1Level: Number(firstLevel.value),
+      skill2Level: Number(secondLevel.value),
+      slot: Number(slot.value),
+      talismanId: Number(talisman.value),
+      box: Number(box.value),
+    });
+  }
+
+  switch (codes) {
+    case "no level":
+      ret = "Please, input skill level";
+      break;
+
+    case "too long":
+      ret = "Too Long, Too much. Don't be greedy";
+      break;
+
+    default:
+      ret = names + codes;
+  }
+
+  output.innerHTML = ret;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
