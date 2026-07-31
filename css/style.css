@@ -100,6 +100,19 @@ option {
   color: var(--fg);
 }
 
+.toaster {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--bg);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+}
+
 .output {
   margin: 0.25em;
   padding: 0.25em;

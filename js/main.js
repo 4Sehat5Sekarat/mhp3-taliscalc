@@ -9,18 +9,7 @@ function showToast(msg) {
   const toast = document.createElement("div");
   toast.textContent = msg;
 
-  toast.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #222;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    z-index: 9999;
-  `;
+  toast.className = "toaster";
 
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 1500);
@@ -63,6 +52,7 @@ function calculateCodes({
   slot = 0,
   talismanId = 1,
   box = 1,
+  is_uljm = false,
 } = {}) {
   if (!skill1Level && !skill2Level) return "no level";
 
@@ -74,34 +64,14 @@ function calculateCodes({
 
   const address = 65032 + box * 12;
 
-  return `
-_L 0x2174${hex16(address)} 0x${hex16(levelData)}6501<br />
-_L 0x2174${hex16(address + 4)} 0x0000${hex16(skillData)}`;
-}
-
-// TODO: test and merge into calculateCodes because just different address
-function calculateCodesULJM({
-  skill1Id = 0,
-  skill2Id = 0,
-  skill1Level = 0,
-  skill2Level = 0,
-  slot = 0,
-  talismanId = 1,
-  box = 1,
-} = {}) {
-  if (!skill1Level && !skill2Level) return "no level";
-
-  const skillData = skill1Id + skill2Id * 128 + slot * 16384;
-  const levelData =
-    (skill1Level + 30) * 16 + (skill2Level + 30) * 1024 + talismanId - 1;
-
-  if (levelData > 0xffff) return "too long";
-
-  const address = 65032 + box * 12;
+  let aaaa = "2174";
+  if (is_uljm) {
+    aaaa = "2134";
+  }
 
   return `
-_L 0x2134${hex16(address)} 0x${hex16(levelData)}6501<br />
-_L 0x2134${hex16(address + 4)} 0x0000${hex16(skillData)}`;
+_L 0x${aaaa}${hex16(address)} 0x${hex16(levelData)}6501<br />
+_L 0x${aaaa}${hex16(address + 4)} 0x0000${hex16(skillData)}`;
 }
 
 function calculateValues() {
@@ -118,7 +88,14 @@ function calculateValues() {
 
   const names = `_C0 ${talisman.selectedOptions[0].text} ${firstSkill.selectedOptions[0].text} with ${secondSkill.selectedOptions[0].text}<br>`;
 
-  const args = {
+  let is_uljm;
+  if (hash === "#uljm") {
+    is_uljm = true;
+  } else {
+    is_uljm = false;
+  }
+
+  codes = calculateCodes({
     skill1Id: Number(firstSkill.value),
     skill2Id: Number(secondSkill.value),
     skill1Level: Number(firstLevel.value),
@@ -126,14 +103,8 @@ function calculateValues() {
     slot: Number(slot.value),
     talismanId: Number(talisman.value),
     box: Number(box.value),
-  };
-
-  let codes;
-  if (hash === "#uljm") {
-    codes = calculateCodesULJM(args);
-  } else {
-    codes = calculateCodes(args);
-  }
+    is_uljm: is_uljm,
+  });
 
   switch (codes) {
     case "no level":
@@ -161,4 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll("input, select")
     .forEach((el) => el.addEventListener("input", calculateValues));
+
+  window.addEventListener("hashchange", calculateValues);
 });
